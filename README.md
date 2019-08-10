@@ -14,6 +14,7 @@ I'm going to explore GitHub.
  - sandbox - well, sandbox (:
  - bstu-<> - repository related to Brest State Technical University.
  - try-<> - repository for testing and fun.
+ - my_code - my code library
 
 
 1/27/2019
