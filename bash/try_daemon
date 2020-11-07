@@ -1,0 +1,22 @@
+#!/bin/bash
+
+if [ "$1" = "DAEMON" ]; then
+    # is this necessary? Add other signals at will (TTIN TTOU INT STOP TSTP)
+    trap '' INT
+    cd /tmp
+    shift
+    ### daemonized section ######
+    echo $1 | sudo openconnect sslgw2.epolsoft.com --user=vouk --passwd-on-stdin &
+    #### end of daemonized section ####
+    exit 0
+else
+    echo "Login is 'vouk'."
+    echo -n "Enter password: "
+    read PASSWORD
+    echo 'Starting as deamon...'
+fi
+
+export PATH=/sbin:/usr/sbin:/bin:/usr/bin:/usr/local/sbin:/usr/local/bin
+umask 022
+# You can add nice and ionice before nohup but they might not be installed
+nohup setsid $0 DAEMON $PASSWORD 2>/var/log/epolsoft_openconnect.err >/var/log/epolsoft_openconnect.log &

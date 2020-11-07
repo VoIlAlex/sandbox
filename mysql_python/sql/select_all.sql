@@ -1,0 +1,1 @@
+SELECT * FROM `My First MySQL Table`
